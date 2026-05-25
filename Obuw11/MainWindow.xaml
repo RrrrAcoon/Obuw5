@@ -1,12 +1,71 @@
 ﻿<Window x:Class="Obuw11.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:m="clr-namespace:Obuw11.Modeli"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Obuw11"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Background="#FFFFFF"
+        FontFamily="Arial"
+        WindowStartupLocation="CenterScreen"
+        Title="Католог товаров" Height="600" Width="900">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="LightGreen">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0" Source="/Icon.png"/>
+            <Button Grid.Column="1" Click="Vihod" Background="Green" Content="Выход" Margin="10" Width="80"/>
+            <Button Grid.Column="2" x:Name="BthZakazi" Click="Zakazi" Background="Green" Content="Заказы" Margin="10" Width="80"/>
+            <TextBlock Grid.Column="3" x:Name="txtPolzovatel" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" />
+        </Grid>
+
+        <StackPanel Margin="10" Grid.Row="1" Orientation="Horizontal" x:Name="PanelPoiska">
+            <TextBox x:Name="Poisk" Width="200" TextChanged="PoiskTextChanged" Margin="5" />
+            <ComboBox x:Name="ComboFiltr" Width="150" SelectionChanged="Combo" Margin="5" />
+            <ComboBox x:Name="ComboSort" Width="150" SelectionChanged="Combo" Margin="5" >
+                <ComboBoxItem Content="Без Сортировки"/>
+                <ComboBoxItem Content="По возростанию"/>
+                <ComboBoxItem Content="По Убыванию"/>
+            </ComboBox>
+            <Button x:Name="bthDobavit" Content="Добавить" Click="Dobavit" Margin="5"/>
+            <Button x:Name="bthURedart" Content="редактировать" Click="Redakt" Margin="5"/>
+            <Button x:Name="bthUdalit" Content="Удалить" Click="Udalit" Margin="5"/>
+
+        </StackPanel>
+
+        <ListView Margin="10" Grid.Row="2" x:Name="LvElement" HorizontalContentAlignment="Stretch" MouseDoubleClick="ClickElement">
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <StackPanel Orientation="Horizontal" Margin="10" Background="{Binding CvetFona}">
+                        <Image Width="100" Height="100" Source="{Binding PolniyPutKFoto}"/>
+                        <StackPanel Margin="5" Width="550">
+                            <TextBlock Text="{Binding Shapka}" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Opisanie, StringFormat='Описание товара:{0}'}"/>
+                            <TextBlock Text="{Binding Proizvoditel.Nazvanie, StringFormat='Производитель: {0}'}"/>
+                            <TextBlock Text="{Binding Postavchik.Nazvanie, StringFormat='Поставщик: {0}'}"/>
+                            <TextBlock Text="{Binding TekuchayaCena, StringFormat='Цена: {0}'}" TextDecorations="Strikethrough" Foreground="Red" Visibility="{Binding NormalnayaCena}"/>
+                            <TextBlock Text="{Binding Cena, StringFormat='{}{0}'}"  Visibility="{Binding NormalnayaCena}"/>
+                            <TextBlock Text="{Binding EdinicaIzmereniya.Nazvanie, StringFormat='Единица мзмерения: {0}'}"/>
+                            <TextBlock Text="{Binding Kolichestvo, StringFormat='Количество на складе: {0}'}"/>
+
+                        </StackPanel>
+                        <TextBlock Text="{Binding Skidka, StringFormat='Действующая скидка: {0}%'}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>

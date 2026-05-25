@@ -1,0 +1,40 @@
+﻿<Window x:Class="Obuw11.ZakaziRedakt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:m="clr-namespace:Obuw11.Modeli"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Obuw11"
+        mc:Ignorable="d"
+        Background="#FFFFFF"
+        FontFamily="Arial"
+        WindowStartupLocation="CenterScreen"
+        Title="Редактирование заказа" Height="450" Width="400">
+    <StackPanel Margin="15">
+        <TextBlock x:Name="lbArtikul" Text="Артикул"/>
+        <TextBox x:Name="txtArtikul" Text="{Binding Id,Mode=OneWay}" IsReadOnly="True" Margin="0,0,0,10"/>
+
+        <TextBlock Text="Дата заказа"/>
+        <DatePicker SelectedDate="{Binding DataZakaza}" Margin="0,0,0,10"/>
+
+
+        <TextBlock Text="Дата выдачи"/>
+        <DatePicker SelectedDate="{Binding DataVidachi}" Margin="0,0,0,10"/>
+
+
+
+        <TextBlock Text="Пункт выдачи"/>
+        <ComboBox x:Name="ComboPunkt"  SelectedValue="{Binding PunktVidachiId}" DisplayMemberPath="Adres" SelectedValuePath="Id" Margin="0,0,0,10"/>
+       
+        <TextBlock Text="Статус"/>
+        <ComboBox x:Name="ComboStatus" SelectedValue="{Binding StatusZakazaId}" DisplayMemberPath="Nazvanie" SelectedValuePath="Id" Margin="0,0,0,10"/>
+        <TextBlock Text="Клиент"/>
+        <ComboBox x:Name="ComboClient" SelectedValue="{Binding PolzovatelId}" DisplayMemberPath="FIO" SelectedValuePath="Id" Margin="0,0,0,10"/>
+
+
+        <TextBlock Text="код получения"/>
+        <TextBox  Text="{Binding KodPolucheniya}" Margin="0,0,0,10"/>
+
+        <Button Click="Sohranit" Content="Сохранить" />
+    </StackPanel>
+</Window>

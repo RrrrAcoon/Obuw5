@@ -1,0 +1,23 @@
+﻿<Window x:Class="Obuw11.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Obuw11"
+        mc:Ignorable="d"
+        FontFamily="Arial"
+        Background="#FFFFFF"
+        WindowStartupLocation="CenterScreen"
+        Title="Авторизация" Height="450" Width="400">
+    <StackPanel Margin="15" VerticalAlignment="Center">
+        <TextBlock Text="Авторизация" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20" />
+        <TextBlock Text="Логин"/>
+        <TextBox x:Name="txtLogin" Margin="0,0,0,20"/>
+        <TextBlock Text="Пароль"/>
+        <PasswordBox x:Name="txtParol" Margin="0,0,0,20"/>
+
+        <Button Content="Войти" Click="Knopka1" Background="LightGreen" Height="30" Margin="0,0,0,20"/>
+        <Button Content="Войти как Гость " Click="Knopka2" Background="Green" Height="30" Margin="0,0,0,20"/>
+
+    </StackPanel>
+</Window>
